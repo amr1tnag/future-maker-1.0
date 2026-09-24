@@ -245,26 +245,19 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
 .hero-art {
   background: linear-gradient(155deg, var(--navy), var(--navy-soft));
   border-radius: 24px;
-  min-height: 320px;
+  aspect-ratio: 2 / 1;
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow);
 }
-.hero-art .grid-lines {
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.hero-art .chip {
-  position: absolute;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 14px;
-  padding: 14px 18px;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
-  backdrop-filter: blur(4px);
+@media (max-width: 860px) {
+  .hero-art { aspect-ratio: 16 / 9; }
 }
 
 /* Sections */
