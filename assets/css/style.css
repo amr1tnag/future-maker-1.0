@@ -32,6 +32,15 @@ img { max-width: 100%; display: block; }
 
 a { color: inherit; text-decoration: none; }
 
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 .wrap {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -111,7 +120,10 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 76px;
+  min-height: 76px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  gap: 16px;
 }
 
 .logo {
@@ -122,6 +134,8 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   font-weight: 800;
   font-size: 1.2rem;
   color: var(--navy);
+  white-space: nowrap;
+  flex: none;
 }
 .logo .mark {
   width: 36px; height: 36px;
@@ -129,6 +143,7 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   background: linear-gradient(135deg, var(--brand), var(--amber));
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-weight: 900;
+  flex: none;
 }
 
 .nav-links {
@@ -141,7 +156,7 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
 .nav-links a { color: var(--ink-soft); padding: 6px 0; border-bottom: 2px solid transparent; }
 .nav-links a:hover, .nav-links a.active { color: var(--navy); border-color: var(--brand); }
 
-.nav-cta { display: flex; align-items: center; gap: 14px; }
+.nav-cta { display: flex; align-items: center; gap: 12px; flex: none; }
 
 .nav-toggle {
   display: none;
@@ -149,15 +164,59 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   border: 1px solid var(--line);
   border-radius: 10px;
   width: 42px; height: 42px;
+  min-width: 42px;
   font-size: 1.3rem;
   cursor: pointer;
+  color: var(--navy);
 }
 
+.mobile-nav-cta { display: none; }
+
+.nav-backdrop { display: none; }
+
 @media (max-width: 900px) {
-  .nav-links { position: absolute; top: 76px; left: 0; right: 0; background: #fff; flex-direction: column; align-items: flex-start; padding: 18px 24px 28px; border-bottom: 1px solid var(--line); display: none; gap: 16px; box-shadow: var(--shadow); }
+  .wrap { flex-wrap: nowrap; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px 24px 28px;
+    border-bottom: 1px solid var(--line);
+    display: none;
+    gap: 16px;
+    box-shadow: var(--shadow);
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+  }
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
-  .nav-cta .btn-outline { display: none; }
+  .nav-cta .btn-outline,
+  .nav-cta .btn-primary { display: none; }
+  .mobile-nav-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 6px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .mobile-nav-cta .btn { width: 100%; justify-content: center; }
+  .nav-backdrop.open {
+    display: block;
+    position: fixed;
+    inset: 76px 0 0 0;
+    background: rgba(11, 19, 32, 0.35);
+    z-index: 40;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo { font-size: 1.05rem; }
+  .logo .mark { width: 32px; height: 32px; font-size: 0.8rem; }
 }
 
 /* Hero */
@@ -392,6 +451,8 @@ td { color: var(--ink-soft); }
   gap: 16px;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ""; }
+.faq-item summary:hover { color: var(--brand-dark); }
 .faq-item summary::after {
   content: "+";
   font-size: 1.4rem;
@@ -410,8 +471,20 @@ td { color: var(--ink-soft); }
   border: 1px solid var(--line);
   margin-top: 32px;
   box-shadow: var(--shadow);
+  background: var(--paper-soft);
 }
 .map-box iframe { width: 100%; height: 380px; border: 0; display: block; }
+.map-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+.map-fallback p { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
 
 /* Contact */
 .contact-card {

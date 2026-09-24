@@ -13,23 +13,28 @@
   <header class="site-header">
     <div class="wrap">
       <a href="index.html" class="logo"><span class="mark">FM</span> Future Makers</a>
-      <nav class="nav-links">
+      <nav class="nav-links" id="site-nav">
         <a href="index.html">Home</a>
         <a href="workshop.html">3D Printing Workshop</a>
         <a href="program.html">6-Month Program</a>
-        <a href="membership.html" class="active">Maker Access</a>
+        <a href="membership.html" class="active" aria-current="page">Maker Access</a>
         <a href="fees.html">Fees</a>
         <a href="location.html">Location</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
         
+        <div class="mobile-nav-cta">
+          <a href="workshop.html" class="btn btn-primary">Book Workshop &mdash; &#8377;3,000</a>
+          <a href="contact.html" class="btn btn-outline">Contact Us</a>
+        </div>
       </nav>
       <div class="nav-cta">
         <a href="contact.html" class="btn btn-outline">Contact</a>
         <a href="workshop.html" class="btn btn-primary">Book Workshop</a>
-        <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">&#9776;</button>
       </div>
     </div>
+    <div class="nav-backdrop"></div>
   </header>
   
   <section class="page-hero">
